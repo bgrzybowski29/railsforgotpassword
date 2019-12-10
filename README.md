@@ -290,3 +290,17 @@ def forgot_password(user)
 	<Route exact path="/resetpassword/:resetToken" render={(props) => <ResetPasswordForm resetToken={props.match.params.resetToken} />} />
 	<Route exact path="/forgot" render={(props) => <ForgotPasswordForm />} />
 	```
+	
+	
+# Screen shots 
+* Forgot Link on login screen   
+![](Forgot_on_Login.png)  
+
+* Enter your email address you registered with.  
+![](enter_email.png)  
+
+* Recieve an email with a link back to a custom url for changing password.  
+![](email_with_link.png)  
+
+* Enter your new password.
+![](custom_link_with_token.png)  
