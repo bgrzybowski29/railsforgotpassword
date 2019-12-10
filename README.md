@@ -2,10 +2,10 @@
 Guide to Rails Forgot Password Logic
 
 ###Asumptions:
-	* Rails backend
-	* React frontend
-	* Authentication set up with bcrypt and JWT
-	* Action Mailer already set up.
+	* Rails backend  
+	* React frontend  
+	* Authentication set up with bcrypt and JWT  
+	* Action Mailer already set up  
 
 ##Backend
 * Command line - generate password resets controller and new view:
