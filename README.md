@@ -136,3 +136,102 @@ export const resetPasswordInit = async (data) => {
   return JSON.stringify(resp.data);
 }
 ```  
+* ForgotPasswordForm  
+
+```ruby
+import React, { useState } from 'react'
+import { withRouter } from 'react-router';
+import { resetPasswordInit } from '../services/api-helper';
+
+function ForgotPasswordForm(props) {
+
+  const [email, setEmail] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleResetPassword = async () => {
+    try {
+      const data = { email: email };
+      const resp = await resetPasswordInit(data);
+      window.alert(resp);
+      props.history.push("/login");
+    }
+    catch (err) {
+      setErrorMessage(`Error ${err} - Invalid credentials`);
+    }
+  }
+
+  return (
+    <>
+      <form className="form-login" onSubmit={(e) => {
+        e.preventDefault();
+        handleResetPassword();
+      }} >
+        <h1><span className="log-in">Request Password Reset</span></h1>
+        <p className="float">
+          <label for="email">Email</label>
+          <input type='email' value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
+        </p>
+        <p className="clearfix">
+          <input id="change-password" type="submit" name="submit" value="Request Password Reset" />
+        </p>
+      </form>
+      <br />
+      <p>{errorMessage}</p>
+    </>
+  )
+}
+export default withRouter(ForgotPasswordForm);
+```  
+* ForgotPasswordForm  
+
+```ruby
+import React, { useState } from 'react'
+import { withRouter } from 'react-router';
+import { resetPassword } from '../services/api-helper';
+
+function ResetPasswordForm(props) {
+
+  const [newPassword, setNewPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleResetPassword = async (password) => {
+    try {
+      const data = { user: { password: newPassword } };
+      const resp = await resetPassword(props.resetToken, data);
+      window.alert(resp);
+      props.history.push("/login");
+    }
+    catch (err) {
+      setErrorMessage(`Error ${err} - Invalid credentials`);
+    }
+  }
+
+  return (
+    <>
+      <form className="form-login" onSubmit={(e) => {
+        e.preventDefault();
+        handleResetPassword(newPassword);
+      }} >
+        <h1><span className="log-in">Reset Password</span></h1>
+        <p className="float">
+          <label for="password">New Password</label>
+          <input type='password' value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="New Password" className="showpassword" />
+        </p>
+        <p className="clearfix">
+          <input id="change-password" type="submit" name="submit" value="Reset Password" />
+        </p>
+      </form>
+      <br />
+      <p>{errorMessage}</p>
+    </>
+  )
+}
+export default withRouter(ResetPasswordForm);
+```
+
+* In App.js  
+
+```ruby
+<Route exact path="/resetpassword/:resetToken" render={(props) => <ResetPasswordForm resetToken={props.match.params.resetToken} />} />
+<Route exact path="/forgot" render={(props) => <ForgotPasswordForm />} />
+```
