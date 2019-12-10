@@ -11,17 +11,7 @@ Guide to Rails Forgot Password Logic
 * Command line - generate password resets controller and new view:
 ```ruby
 rails g controller password_resets new
-```
-
-* Go to routes.rb file:  
-Delete:  
-```ruby
-get 'password_resets/new'  
-```  
-Add:  
-```ruby
-resources :password_resets
-```   
+``` 
 
 * Go to routes.rb file:  
 
