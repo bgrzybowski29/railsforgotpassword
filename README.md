@@ -1,13 +1,13 @@
 # railsforgotpassword
 Guide to Rails Forgot Password Logic
 
-###Asumptions:
+### Asumptions:
 	* Rails backend  
 	* React frontend  
 	* Authentication set up with bcrypt and JWT  
 	* Action Mailer already set up  
 
-##Backend
+## Backend
 * Command line - generate password resets controller and new view:
 ```ruby
 rails g controller password_resets new
